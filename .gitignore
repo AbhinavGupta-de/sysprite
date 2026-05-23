@@ -1,0 +1,9 @@
+.build/
+.swiftpm/
+Package.resolved
+*.xcodeproj/
+DerivedData/
+.DS_Store
+*.app
+Resources/AppIcon.iconset/
+excalidraw.log
