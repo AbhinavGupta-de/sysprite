@@ -8,7 +8,7 @@ struct MemorySample {
 }
 
 final class MemoryMonitor {
-    private let queue = DispatchQueue(label: "runcat.mem")
+    private let queue = DispatchQueue(label: "sysprite.mem")
     private var timer: DispatchSourceTimer?
     var onUpdate: ((MemorySample) -> Void)?
 

@@ -1,4 +1,5 @@
 import Foundation
+import ServiceManagement
 
 /// `sysprite stats` CLI. Reads the snapshot JSON written by the running GUI and prints either
 /// the full JSON or a single field — designed for sketchybar plugins, fish/zsh prompts, etc.
@@ -56,5 +57,39 @@ enum CLI {
     private static func printBytesPerSec(_ any: Any?) {
         let v = (any as? NSNumber)?.uint64Value ?? 0
         print(v)
+    }
+
+    /// Registers (or unregisters) Sysprite as a Login Item via SMAppService so the user can
+    /// see and toggle it from System Settings → General → Login Items.
+    static func setLoginItem(_ enabled: Bool) -> Int32 {
+        guard #available(macOS 13.0, *) else {
+            FileHandle.standardError.write(Data("sysprite: login items require macOS 13+\n".utf8))
+            return 1
+        }
+        do {
+            if enabled {
+                if SMAppService.mainApp.status != .enabled { try SMAppService.mainApp.register() }
+                print("Sysprite is set to launch at login.")
+            } else {
+                if SMAppService.mainApp.status == .enabled { try SMAppService.mainApp.unregister() }
+                print("Sysprite will no longer launch at login.")
+            }
+            return 0
+        } catch {
+            FileHandle.standardError.write(Data("sysprite: \(error.localizedDescription)\n".utf8))
+            return 1
+        }
+    }
+
+    static func printLoginStatus() -> Int32 {
+        guard #available(macOS 13.0, *) else { print("unsupported"); return 1 }
+        switch SMAppService.mainApp.status {
+        case .enabled:           print("enabled")
+        case .notRegistered:     print("disabled")
+        case .notFound:          print("not-found")
+        case .requiresApproval:  print("requires-approval")
+        @unknown default:        print("unknown")
+        }
+        return 0
     }
 }

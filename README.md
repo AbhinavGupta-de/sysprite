@@ -1,6 +1,6 @@
 # Sysprite
 
-A tiny animated pet for your macOS menu bar that reflects live system pressure. Open-source spiritual cousin of RunCat — but driven by CPU + memory + disk + network combined, with a built-in stats menu, an `Activity Monitor` shortcut, and a JSON CLI for [sketchybar](https://github.com/FelixKratz/SketchyBar) plugins.
+A tiny animated pet for your macOS menu bar that reflects live system pressure. Driven by CPU + memory + disk + network combined, with a built-in stats menu, an `Activity Monitor` shortcut, and a JSON CLI for [sketchybar](https://github.com/FelixKratz/SketchyBar) plugins.
 
 - 🐾 Animated menu-bar sprite — speed maps to combined system pressure (CPU, memory, sustained network, near-full disk)
 - 🔢 Optional `42%` pressure label in the menu bar, with color tint at 70% / 90%
@@ -119,4 +119,4 @@ PRs welcome.
 
 ## License
 
-MIT. Not affiliated with the original RunCat or any other menu-bar pet.
+MIT.

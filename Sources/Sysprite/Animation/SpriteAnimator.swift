@@ -4,7 +4,7 @@ final class SpriteAnimator {
     private var theme: Theme
     private var frameIndex = 0
     private var timer: DispatchSourceTimer?
-    private let queue = DispatchQueue(label: "runcat.animator")
+    private let queue = DispatchQueue(label: "sysprite.animator")
     private(set) var currentInterval: TimeInterval = 0.2
 
     var onFrame: ((NSImage) -> Void)?

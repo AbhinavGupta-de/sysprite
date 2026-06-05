@@ -4,7 +4,7 @@ import Darwin
 /// Samples system-wide CPU usage via host_processor_info; computes delta between ticks.
 final class CPUMonitor {
     private var prevTicks: [UInt32] = []
-    private let queue = DispatchQueue(label: "runcat.cpu")
+    private let queue = DispatchQueue(label: "sysprite.cpu")
     private var timer: DispatchSourceTimer?
 
     var onUpdate: ((Double) -> Void)?
